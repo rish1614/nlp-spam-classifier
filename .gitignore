@@ -1,0 +1,13 @@
+# .gitignore
+
+# Ignore processed data (can be regenerated from raw)
+data/processed/
+
+# Ignore trained models (too large for GitHub, should be trained locally)
+models/*.pkl
+models/transformer_model/
+
+# Ignore Python environments and cache
+venv/
+__pycache__/
+.pytest_cache/
