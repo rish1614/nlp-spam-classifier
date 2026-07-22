@@ -10,7 +10,7 @@
 
 An end-to-end Machine Learning architecture for text classification, transitioning from classical Natural Language Processing to modern Transformer-based deep learning. 
 
-[Explore the Code](#project-architecture) · [Report Bug](#) · [Request Feature](#)
+[Explore the Code](#project-architecture) · [Dataset Info](#data-provenance) · [Deployment](#deployment-guide)
 
 </div>
 
@@ -18,12 +18,12 @@ An end-to-end Machine Learning architecture for text classification, transitioni
 
 ## Overview
 
-This project serves as a comprehensive pipeline for classifying SMS messages and emails as Spam or Ham (Safe). It is designed to be highly modular, allowing developers to experiment with various NLP techniques ranging from standard Bag of Words to fine-tuning HuggingFace Transformers. 
+This project serves as a comprehensive, production-ready pipeline for classifying SMS messages and emails as Spam or Ham (Safe). It is designed to be highly modular, functioning both as a robust classification tool and an educational progression from standard statistical models (Bag of Words) to state-of-the-art Deep Learning (HuggingFace Transformers).
 
 **Key Features:**
-* **Progressive Complexity:** Includes 7 distinct Jupyter notebooks moving from basic EDA to DistilBERT.
+* **Progressive Complexity:** 7 distinct Jupyter notebooks structured as a learning curriculum.
 * **Modular Source Code:** Production-ready `src/` directory for text cleaning, feature extraction, and inference.
-* **Dual Deployment:** Features both a Streamlit dashboard for rapid prototyping and a Flask application for standard web deployment.
+* **Dual Deployment:** Features both a Streamlit dashboard for rapid prototyping and a Flask application for traditional web deployment.
 * **Automated Testing:** Integrated unit testing suite using `pytest`.
 
 <br>
@@ -32,7 +32,7 @@ This project serves as a comprehensive pipeline for classifying SMS messages and
   <!-- NOTE: Replace the src link below with a path to an actual .gif screen recording of your app once you upload it to GitHub -->
   <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" width="100%">
   <br>
-  <i>(Tip: Record a short GIF of your Streamlit app working and place it here by changing the image source in the README)</i>
+  <i>(Demo: Streamlit Interface running local inference via Naive Bayes)</i>
 </div>
 
 <br>
@@ -41,38 +41,39 @@ This project serves as a comprehensive pipeline for classifying SMS messages and
 
 ## Project Architecture
 
-<details>
-<summary>Click to expand the full directory tree</summary>
+<details open>
+<summary><b>Click to collapse/expand the directory tree</b></summary>
 
 ```text
 nlp-spam-classifier/
 ├── app/
-│   ├── app.py                 # Streamlit application
-│   ├── flask_app.py           # Flask application
+│   ├── app.py                 # Streamlit interactive application
+│   ├── flask_app.py           # Flask web server
 │   └── templates/
 │       └── index.html         # Tailwind CSS frontend for Flask
 ├── data/
-│   ├── raw/                   # Original dataset
-│   └── processed/             # Cleaned and tokenized datasets
-├── models/                    # Serialized .pkl models and vectorizers
+│   ├── raw/                   # Immutable raw UCI dataset (spam.tsv)
+│   ├── processed/             # Ephemeral cleaned data (.csv)
+│   └── README.md              # Data dictionary and schema rules
+├── models/                    # Serialized .pkl models and vectorizers (Git-ignored)
 ├── notebooks/
 │   ├── 01_eda.ipynb           # Exploratory Data Analysis
-│   ├── 02_preprocessing.ipynb # Text Normalization
+│   ├── 02_preprocessing.ipynb # Text Normalization Pipeline
 │   ├── 03_baseline_model.ipynb# Naive Bayes + BoW
 │   ├── 04_tfidf_model.ipynb   # TF-IDF + SVM/Logistic Regression
-│   ├── 05_word_embeddings.ipynb # Word2Vec implementation
+│   ├── 05_word_embeddings.ipynb # Word2Vec semantic mapping
 │   ├── 06_transformer_model.ipynb # DistilBERT fine-tuning
 │   └── 07_error_analysis.ipynb# False positive/negative evaluation
 ├── src/
 │   ├── __init__.py
-│   ├── preprocessing.py       # Cleaning and lemmatization logic
+│   ├── preprocessing.py       # Reusable cleaning & lemmatization logic
 │   ├── features.py            # Vectorization wrappers
-│   ├── train.py               # Model training pipeline
-│   ├── evaluate.py            # Metrics and confusion matrices
-│   └── predict.py             # Live inference engine
+│   ├── train.py               # Model training execution
+│   ├── evaluate.py            # Core metrics and confusion matrices
+│   └── predict.py             # Live inference engine for web apps
 ├── tests/
-│   └── test_preprocessing.py  # Pytest suite
+│   └── test_preprocessing.py  # Pytest suite for data integrity
 ├── config.yaml                # Global variables and hyperparameters
 ├── environment.yml            # Conda environment build file
-├── requirements.txt           # Pip dependencies
+├── requirements.txt           # Pip dependencies fallback
 └── README.md
