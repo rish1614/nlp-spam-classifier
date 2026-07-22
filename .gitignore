@@ -1,13 +1,29 @@
-# .gitignore
-
-# Ignore processed data (can be regenerated from raw)
-data/processed/
-
-# Ignore trained models (too large for GitHub, should be trained locally)
-models/*.pkl
-models/transformer_model/
-
-# Ignore Python environments and cache
+# ==========================================
+# Python Environments & Caches
+# ==========================================
 venv/
+env/
 __pycache__/
+*.py[cod]
 .pytest_cache/
+.ipynb_checkpoints/
+
+# ==========================================
+# Processed Data
+# ==========================================
+# Ignore all generated CSVs, but keep the folder structure intact
+data/processed/*
+!data/processed/.gitkeep
+
+# ==========================================
+# Machine Learning Models
+# ==========================================
+# Ignore all large model files, but keep the folder structure intact
+models/*
+!models/.gitkeep
+
+# ==========================================
+# OS Generated Files
+# ==========================================
+.DS_Store
+Thumbs.db
