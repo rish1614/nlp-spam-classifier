@@ -1,0 +1,29 @@
+# config.yaml
+
+# File paths
+paths:
+  raw_data: "data/raw/spam.tsv"
+  processed_data: "data/processed/cleaned_spam.csv"
+  vectorizer: "models/bow_vectorizer.pkl"
+  baseline_model: "models/naive_bayes.pkl"
+  transformer_model: "models/transformer_model"
+
+# Model hyperparameters
+hyperparameters:
+  tfidf:
+    max_features: 5000
+    ngram_range: [1, 2]
+  word2vec:
+    vector_size: 100
+    window: 5
+    min_count: 1
+  transformer:
+    epochs: 2
+    batch_size: 16
+    learning_rate: 0.00002
+
+# Deployment settings
+app:
+  host: "0.0.0.0"
+  port: 5000
+  debug: true
