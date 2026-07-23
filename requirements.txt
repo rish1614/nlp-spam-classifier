@@ -7,7 +7,7 @@ pandas>=2.0.0
 numpy>=1.24.0
 
 # Classical Machine Learning & NLP
-scikit-learn>=1.2.0
+scikit-learn==1.7.2
 nltk>=3.8.1
 
 # Web Application Framework
